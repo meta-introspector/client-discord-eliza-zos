@@ -22,4 +22,4 @@ declare class DiscordClient extends EventEmitter {
 }
 declare const DiscordClientInterface: Client$1;
 
-export { DiscordClient, DiscordClientInterface };
+export { DiscordClient, DiscordClientInterface, DiscordClientInterface as default };

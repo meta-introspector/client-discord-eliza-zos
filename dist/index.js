@@ -4096,8 +4096,10 @@ var DiscordClientInterface = {
     }
   }
 };
+var index_default = DiscordClientInterface;
 export {
   DiscordClient,
-  DiscordClientInterface
+  DiscordClientInterface,
+  index_default as default
 };
 //# sourceMappingURL=index.js.map
