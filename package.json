@@ -45,5 +45,11 @@
     },
     "peerDependencies": {
         "whatwg-url": "7.1.0"
+    },
+    "pluginTypes": "elizaos:client:1.0.0",
+    "pluginParameters": {
+        "DISCORD_API_TOKEN": {
+            "type": "string"
+        }
     }
 }
