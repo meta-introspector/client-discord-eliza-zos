@@ -29,17 +29,21 @@ import { VoiceManager } from "./voice.ts";
 import { PermissionsBitField } from "discord.js";
 
 export class DiscordClient extends EventEmitter {
+    env: object;
+    runtime: IAgentRuntime;
     apiToken: string;
     client: Client;
-    runtime: IAgentRuntime;
     character: Character;
     private messageManager: MessageManager;
     private voiceManager: VoiceManager;
 
-    constructor(runtime: IAgentRuntime) {
+    constructor(env: any, runtime: IAgentRuntime) {
         super();
 
-        this.apiToken = runtime.getSetting("DISCORD_API_TOKEN") as string;
+        this.env = env;
+        this.runtime = runtime;
+
+        this.apiToken = env.DISCORD_API_TOKEN as string;
         this.client = new Client({
             intents: [
                 GatewayIntentBits.Guilds,
@@ -59,7 +63,6 @@ export class DiscordClient extends EventEmitter {
             ],
         });
 
-        this.runtime = runtime;
         this.voiceManager = new VoiceManager(this);
         this.messageManager = new MessageManager(this, this.voiceManager);
 
@@ -401,7 +404,7 @@ export function startDiscord(runtime: IAgentRuntime) {
 }
 
 export const DiscordClientInterface: ElizaClient = {
-    start: async (runtime: IAgentRuntime) => new DiscordClient(runtime),
+    start: async (env: object, runtime: IAgentRuntime) => new DiscordClient(env, runtime),
     stop: async (runtime: IAgentRuntime) => {
         try {
             // stop it
