@@ -49,6 +49,9 @@
     },
     "pluginTypes": "elizaos:client:1.0.0",
     "pluginParameters": {
+        "DISCORD_APPLICATION_ID": {
+            "type": "string"
+        },
         "DISCORD_API_TOKEN": {
             "type": "string"
         }
