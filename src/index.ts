@@ -399,9 +399,9 @@ export class DiscordClient extends EventEmitter {
     }
 }
 
-export function startDiscord(runtime: IAgentRuntime) {
-    return new DiscordClient(runtime);
-}
+// export function startDiscord(runtime: IAgentRuntime) {
+//     return new DiscordClient(runtime);
+// }
 
 export const DiscordClientInterface: ElizaClient = {
     start: async (env: object, runtime: IAgentRuntime) => new DiscordClient(env, runtime),
