@@ -3,13 +3,14 @@ import { Client, MessageReaction, User } from 'discord.js';
 import { EventEmitter } from 'events';
 
 declare class DiscordClient extends EventEmitter {
+    env: object;
+    runtime: IAgentRuntime;
     apiToken: string;
     client: Client;
-    runtime: IAgentRuntime;
     character: Character;
     private messageManager;
     private voiceManager;
-    constructor(runtime: IAgentRuntime);
+    constructor(env: any, runtime: IAgentRuntime);
     private setupEventListeners;
     stop(): Promise<void>;
     private onClientReady;
@@ -19,7 +20,6 @@ declare class DiscordClient extends EventEmitter {
     private handleInteractionCreate;
     private onReady;
 }
-declare function startDiscord(runtime: IAgentRuntime): DiscordClient;
 declare const DiscordClientInterface: Client$1;
 
-export { DiscordClient, DiscordClientInterface, startDiscord };
+export { DiscordClient, DiscordClientInterface };
