@@ -3784,18 +3784,16 @@ var VoiceManager = class extends EventEmitter {
 // src/index.ts
 import { PermissionsBitField as PermissionsBitField2 } from "discord.js";
 var DiscordClient = class extends EventEmitter2 {
-  env;
   runtime;
   apiToken;
   client;
   character;
   messageManager;
   voiceManager;
-  constructor(env, runtime) {
+  constructor(runtime) {
     super();
-    this.env = env;
     this.runtime = runtime;
-    this.apiToken = env.DISCORD_API_TOKEN;
+    this.apiToken = runtime.getSetting("DISCORD_API_TOKEN");
     this.client = new Client5({
       intents: [
         GatewayIntentBits.Guilds,
@@ -4086,7 +4084,7 @@ var DiscordClient = class extends EventEmitter2 {
   }
 };
 var DiscordClientInterface = {
-  start: async (env, runtime) => new DiscordClient(env, runtime),
+  start: async (runtime) => new DiscordClient(runtime),
   stop: async (runtime) => {
     try {
       elizaLogger4.log("Stopping discord client", runtime.agentId);
