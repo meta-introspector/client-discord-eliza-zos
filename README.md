@@ -14,3 +14,5 @@ The `@elizaos/client-discord` is a plugin designed to integrate the ElizaOS fram
 ## Installation
 
 To install the plugin, you can use npm or yarn:
+
+`npm i github elizaos-plugins/client-discord`
