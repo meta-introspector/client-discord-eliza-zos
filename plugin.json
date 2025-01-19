@@ -1,0 +1,8 @@
+{
+    "pluginTypes": "elizaos:client:1.0.0",
+    "pluginParameters": {
+        "DISCORD_API_TOKEN": {
+            "type": "string"
+        }
+    }
+}
