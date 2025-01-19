@@ -17,7 +17,8 @@
         }
     },
     "files": [
-        "dist"
+        "dist",
+        "plugin.json"
     ],
     "dependencies": {
         "@discordjs/opus": "github:discordjs/opus",
