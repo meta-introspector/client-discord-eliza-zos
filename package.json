@@ -5,20 +5,6 @@
   "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
-  "exports": {
-    "./package.json": "./package.json",
-    "./plugin.json": "./plugin.json",
-    ".": {
-      "import": {
-        "@elizaos/source": "./src/index.ts",
-        "types": "./dist/index.d.ts",
-        "default": "./dist/index.js"
-      }
-    }
-  },
-  "files": [
-    "dist"
-  ],
   "dependencies": {
     "@discordjs/opus": "github:discordjs/opus",
     "@discordjs/rest": "2.4.0",
