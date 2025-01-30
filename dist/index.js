@@ -4160,6 +4160,7 @@ var package_default = {
     "@discordjs/voice": "0.17.0",
     "@types/lodash": "^4.17.14",
     "discord.js": "14.16.3",
+    "ffmpeg-static": "^5.2.0",
     "fluent-ffmpeg": "^2.1.3",
     "libsodium-wrappers": "0.7.15",
     "prism-media": "1.3.5",
@@ -4167,8 +4168,8 @@ var package_default = {
   },
   devDependencies: {
     tsup: "8.3.5",
-    vitest: "1.2.1",
-    typescript: "^5.7.3"
+    typescript: "^5.7.3",
+    vitest: "1.2.1"
   },
   scripts: {
     build: "tsup --format esm --dts",
