@@ -1,7 +1,9 @@
 import { DiscordClient } from './discord-client';
 import packageJson from "../package.json";
 
-export const DiscordClientInterface = {
+const DiscordClientInterface = {
+    name: 'discord',
+    config: packageJson.agentConfig,
     start: async (runtime: any) => new DiscordClient(runtime) as any,
     stop: async (runtime: any) => {
         try {
@@ -12,6 +14,5 @@ export const DiscordClientInterface = {
             console.error("client-discord interface stop error", e);
         }
     },
-    config: packageJson.agentConfig,
 };
 export default DiscordClientInterface;
