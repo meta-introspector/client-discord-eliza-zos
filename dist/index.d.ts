@@ -1,24 +1,17 @@
-import { IAgentRuntime, Character, Client as Client$1 } from '@elizaos/core';
-import { Client, MessageReaction, User } from 'discord.js';
-import { EventEmitter } from 'events';
+declare const DiscordClientInterface: {
+    start: (runtime: any) => Promise<any>;
+    stop: (runtime: any) => Promise<void>;
+    config: {
+        pluginType: string;
+        pluginParameters: {
+            DISCORD_API_TOKEN: {
+                type: string;
+            };
+        };
+        optionalPluginDependencies: {
+            "@elizaos/service-transcription": string;
+        };
+    };
+};
 
-declare class DiscordClient extends EventEmitter {
-    runtime: IAgentRuntime;
-    apiToken: string;
-    client: Client;
-    character: Character;
-    private messageManager;
-    private voiceManager;
-    constructor(runtime: IAgentRuntime);
-    private setupEventListeners;
-    stop(): Promise<void>;
-    private onClientReady;
-    handleReactionAdd(reaction: MessageReaction, user: User): Promise<void>;
-    handleReactionRemove(reaction: MessageReaction, user: User): Promise<void>;
-    private handleGuildCreate;
-    private handleInteractionCreate;
-    private onReady;
-}
-declare const DiscordClientInterface: Client$1;
-
-export { DiscordClient, DiscordClientInterface, DiscordClientInterface as default };
+export { DiscordClientInterface, DiscordClientInterface as default };
