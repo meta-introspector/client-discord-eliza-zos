@@ -2,7 +2,10 @@
     "compilerOptions": {
         "outDir": "dist",
         "rootDir": "src",
-        "types": ["lodash"]
+        "types": ["lodash"],
+        "module": "preserve",
+        "moduleResolution": "bundler",
+        "resolveJsonModule": true
     },
     "include": ["src/**/*.ts"]
 }
