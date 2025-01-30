@@ -4198,6 +4198,8 @@ var package_default = {
 
 // src/index.ts
 var DiscordClientInterface = {
+  name: "discord",
+  config: package_default.agentConfig,
   start: async (runtime) => new DiscordClient(runtime),
   stop: async (runtime) => {
     try {
@@ -4206,12 +4208,10 @@ var DiscordClientInterface = {
     } catch (e) {
       console.error("client-discord interface stop error", e);
     }
-  },
-  config: package_default.agentConfig
+  }
 };
 var index_default = DiscordClientInterface;
 export {
-  DiscordClientInterface,
   index_default as default
 };
 //# sourceMappingURL=index.js.map

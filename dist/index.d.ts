@@ -1,6 +1,5 @@
 declare const DiscordClientInterface: {
-    start: (runtime: any) => Promise<any>;
-    stop: (runtime: any) => Promise<void>;
+    name: string;
     config: {
         pluginType: string;
         pluginParameters: {
@@ -12,6 +11,8 @@ declare const DiscordClientInterface: {
             "@elizaos/service-transcription": string;
         };
     };
+    start: (runtime: any) => Promise<any>;
+    stop: (runtime: any) => Promise<void>;
 };
 
-export { DiscordClientInterface, DiscordClientInterface as default };
+export { DiscordClientInterface as default };
