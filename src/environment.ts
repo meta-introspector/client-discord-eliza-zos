@@ -1,4 +1,4 @@
-import { IAgentRuntime } from "@elizaos/core";
+import type { IAgentRuntime } from "@elizaos/core";
 import { z } from "zod";
 
 export const discordEnvSchema = z.object({
@@ -11,12 +11,16 @@ export const discordEnvSchema = z.object({
 export type DiscordConfig = z.infer<typeof discordEnvSchema>;
 
 export async function validateDiscordConfig(
-    env: any
+    runtime: IAgentRuntime
 ): Promise<DiscordConfig> {
     try {
         const config = {
-            DISCORD_APPLICATION_ID: env.DISCORD_APPLICATION_ID as string,
-            DISCORD_API_TOKEN: env.DISCORD_API_TOKEN as string,
+            DISCORD_APPLICATION_ID:
+                runtime.getSetting("DISCORD_APPLICATION_ID") ||
+                process.env.DISCORD_APPLICATION_ID,
+            DISCORD_API_TOKEN:
+                runtime.getSetting("DISCORD_API_TOKEN") ||
+                process.env.DISCORD_API_TOKEN,
         };
 
         return discordEnvSchema.parse(config);

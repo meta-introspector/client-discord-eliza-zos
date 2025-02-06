@@ -14,7 +14,8 @@ export default defineConfig({
         "@node-llama-cpp",
         "https",
         "http",
-        "@elizaos/core",
+        "agentkeepalive",
+        "fluent-ffmpeg",
         // Add other modules you want to externalize
     ],
 });
