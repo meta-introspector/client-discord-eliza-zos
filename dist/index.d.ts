@@ -1,5 +1,7 @@
-import { Plugin } from '@elizaos/core';
-
-declare const discordPlugin: Plugin;
+declare const discordPlugin: {
+    name: string;
+    description: string;
+    clients: ElizaClient[];
+};
 
 export { discordPlugin as default };

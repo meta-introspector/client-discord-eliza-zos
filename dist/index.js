@@ -1,4 +1,4 @@
-// src/index.ts
+// src/client.ts
 import {
   getEmbeddingZeroVector as getEmbeddingZeroVector3,
   stringToUuid as stringToUuid3,
@@ -4110,7 +4110,7 @@ var VoiceManager = class extends EventEmitter {
   }
 };
 
-// src/index.ts
+// src/client.ts
 import { PermissionsBitField as PermissionsBitField2 } from "discord.js";
 var DiscordClient = class extends EventEmitter2 {
   apiToken;
@@ -4418,6 +4418,8 @@ var DiscordClientInterface = {
   name: "discord",
   start: async (runtime) => new DiscordClient(runtime)
 };
+
+// src/index.ts
 var discordPlugin = {
   name: "discord",
   description: "Discord client plugin",
