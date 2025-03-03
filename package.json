@@ -19,9 +19,10 @@
         "dist"
     ],
     "dependencies": {
+        "@elizaos/core": "workspace:*",
         "@discordjs/opus": "github:discordjs/opus",
         "@discordjs/rest": "2.4.0",
-        "@discordjs/voice": "0.17.0",
+        "@discordjs/voice": "0.18.0",
         "@hapi/shot": "^6.0.1",
         "@types/hapi": "^18.0.14",
         "discord.js": "14.16.3",
