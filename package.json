@@ -22,6 +22,8 @@
         "@discordjs/opus": "github:discordjs/opus",
         "@discordjs/rest": "2.4.0",
         "@discordjs/voice": "0.17.0",
+        "@hapi/shot": "^6.0.1",
+        "@types/hapi": "^18.0.14",
         "discord.js": "14.16.3",
         "fluent-ffmpeg": "^2.1.3",
         "libsodium-wrappers": "0.7.15",
@@ -48,16 +50,16 @@
         "access": "public"
     },
     "agentConfig": {
-      "pluginType": "elizaos:client:1.0.0",
-      "pluginParameters": {
-        "DISCORD_APPLICATION_ID": {
-          "type": "string",
-          "description": "Your aplication id, is required"
-        },
-        "DISCORD_API_TOKEN": {
-          "type": "string",
-          "description": "Discord api token is required"
+        "pluginType": "elizaos:client:1.0.0",
+        "pluginParameters": {
+            "DISCORD_APPLICATION_ID": {
+                "type": "string",
+                "description": "Your aplication id, is required"
+            },
+            "DISCORD_API_TOKEN": {
+                "type": "string",
+                "description": "Discord api token is required"
+            }
         }
-      }
     }
 }
