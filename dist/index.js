@@ -3244,6 +3244,7 @@ import prism from "prism-media";
 import { pipeline } from "stream";
 import fs3 from "fs";
 import path2 from "path";
+var record_files = false;
 var DECODE_FRAME_SIZE = 1024;
 var DECODE_SAMPLE_RATE = 16e3;
 var AudioMonitor = class {
@@ -3679,13 +3680,15 @@ var VoiceManager = class extends EventEmitter {
         new Uint8Array(tempArrayBuffer).set(new Uint8Array(arrayBuffer));
         arrayBuffer = tempArrayBuffer;
       }
-      const timestamp = (/* @__PURE__ */ new Date()).toISOString().replace(/[:.]/g, "-");
-      const userName2 = name.replace(/\s+/g, "_");
-      const fileName = `${userName2}_${timestamp}.wav`;
-      const filePath = path2.join(".", "recordings", fileName);
-      fs3.mkdirSync(path2.dirname(filePath), { recursive: true });
-      fs3.writeFileSync(filePath, wavBuffer);
-      console.log(`WAV file saved as ${filePath}`);
+      if (record_files) {
+        const timestamp = (/* @__PURE__ */ new Date()).toISOString().replace(/[:.]/g, "-");
+        const userName2 = name.replace(/\s+/g, "_");
+        const fileName = `${userName2}_${timestamp}.wav`;
+        const filePath = path2.join(".", "recordings", fileName);
+        fs3.mkdirSync(path2.dirname(filePath), { recursive: true });
+        fs3.writeFileSync(filePath, wavBuffer);
+        console.log(`WAV file saved as ${filePath}`);
+      }
       const transcriptionText = await this.runtime.getService(ServiceType4.TRANSCRIPTION).transcribe(arrayBuffer);
       if (transcriptionText && isValidTranscription(transcriptionText)) {
         state.transcriptionText += transcriptionText;
@@ -3700,7 +3703,7 @@ var VoiceManager = class extends EventEmitter {
           channelId,
           channel,
           name,
-          userName2
+          userName
         );
       }
     } catch (error) {

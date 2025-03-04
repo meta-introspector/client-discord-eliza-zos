@@ -1,3 +1,4 @@
+const record_files = false;
 import {
     type Content,
     type HandlerCallback,
@@ -604,19 +605,20 @@ export class VoiceManager extends EventEmitter {
                 arrayBuffer = tempArrayBuffer;
             }
             // Generate a timestamp and create a filename with the user's name
-            const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
-            const userName = name.replace(/\s+/g, '_'); // Replace spaces with underscores
-            const fileName = `${userName}_${timestamp}.wav`;
-            const filePath = path.join(".", 'recordings', fileName);
+            if (record_files){
+                const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+                const userName = name.replace(/\s+/g, '_'); // Replace spaces with underscores
+                const fileName = `${userName}_${timestamp}.wav`;
+                const filePath = path.join(".", 'recordings', fileName);
 
-            // Ensure the recordings directory exists
-            fs.mkdirSync(path.dirname(filePath), { recursive: true });
+                // Ensure the recordings directory exists
+                fs.mkdirSync(path.dirname(filePath), { recursive: true });
 
-            // Write the wavBuffer to the file
-            fs.writeFileSync(filePath, wavBuffer);
+                // Write the wavBuffer to the file
+                fs.writeFileSync(filePath, wavBuffer);
 
-            console.log(`WAV file saved as ${filePath}`);
-
+                console.log(`WAV file saved as ${filePath}`);
+            }
             const transcriptionText = await this.runtime
                 .getService<ITranscriptionService>(ServiceType.TRANSCRIPTION)
                 .transcribe(arrayBuffer);
