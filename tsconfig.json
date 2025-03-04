@@ -17,6 +17,8 @@
         "allowJs": true,
         "checkJs": false,
         "noEmitOnError": false,
+        "target": "esnext",
+        "downlevelIteration": true,
         "moduleDetection": "force",
         "allowArbitraryExtensions": true,
         "typeRoots":["./node_modules/@types"]

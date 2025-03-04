@@ -42,12 +42,16 @@ import {
 import EventEmitter from "events";
 import prism from "prism-media";
 import { type Readable, pipeline } from "stream";
-import type { DiscordClient } from "./index.ts";
+import type { DiscordClient } from "./client.ts";
+//export default discordPlugin;
+
 import {
     discordShouldRespondTemplate,
     discordVoiceHandlerTemplate,
 } from "./templates.ts";
 import { getWavHeader } from "./utils.ts";
+import fs from 'fs';
+import path from 'path';
 
 // These values are chosen for compatibility with picovoice components
 const DECODE_FRAME_SIZE = 1024;
@@ -591,9 +595,32 @@ export class VoiceManager extends EventEmitter {
             const wavBuffer = await this.convertOpusToWav(inputBuffer);
             console.log("Starting transcription...");
 
+            let arrayBuffer : ArrayBuffer|SharedArrayBuffer= wavBuffer.buffer.slice(
+                wavBuffer.byteOffset,
+                wavBuffer.byteOffset + wavBuffer.byteLength
+            );
+            if (arrayBuffer instanceof SharedArrayBuffer) {
+                const tempArrayBuffer = new ArrayBuffer(arrayBuffer.byteLength);
+                new Uint8Array(tempArrayBuffer).set(new Uint8Array(arrayBuffer));
+                arrayBuffer = tempArrayBuffer;
+            }
+            // Generate a timestamp and create a filename with the user's name
+            const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+            const userName = name.replace(/\s+/g, '_'); // Replace spaces with underscores
+            const fileName = `${userName}_${timestamp}.wav`;
+            const filePath = path.join(__dirname, 'recordings', fileName);
+
+            // Ensure the recordings directory exists
+            fs.mkdirSync(path.dirname(filePath), { recursive: true });
+
+            // Write the wavBuffer to the file
+            fs.writeFileSync(filePath, wavBuffer);
+
+            console.log(`WAV file saved as ${filePath}`);
+
             const transcriptionText = await this.runtime
                 .getService<ITranscriptionService>(ServiceType.TRANSCRIPTION)
-                .transcribe(wavBuffer);
+                .transcribe(arrayBuffer);
 
             function isValidTranscription(text: string): boolean {
                 if (!text || text.includes("[BLANK_AUDIO]")) return false;
