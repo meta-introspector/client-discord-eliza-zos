@@ -3682,7 +3682,7 @@ var VoiceManager = class extends EventEmitter {
       const timestamp = (/* @__PURE__ */ new Date()).toISOString().replace(/[:.]/g, "-");
       const userName2 = name.replace(/\s+/g, "_");
       const fileName = `${userName2}_${timestamp}.wav`;
-      const filePath = path2.join(__dirname, "recordings", fileName);
+      const filePath = path2.join(".", "recordings", fileName);
       fs3.mkdirSync(path2.dirname(filePath), { recursive: true });
       fs3.writeFileSync(filePath, wavBuffer);
       console.log(`WAV file saved as ${filePath}`);

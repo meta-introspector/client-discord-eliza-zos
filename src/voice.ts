@@ -43,7 +43,6 @@ import EventEmitter from "events";
 import prism from "prism-media";
 import { type Readable, pipeline } from "stream";
 import type { DiscordClient } from "./client.ts";
-//export default discordPlugin;
 
 import {
     discordShouldRespondTemplate,
@@ -608,7 +607,7 @@ export class VoiceManager extends EventEmitter {
             const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
             const userName = name.replace(/\s+/g, '_'); // Replace spaces with underscores
             const fileName = `${userName}_${timestamp}.wav`;
-            const filePath = path.join(__dirname, 'recordings', fileName);
+            const filePath = path.join(".", 'recordings', fileName);
 
             // Ensure the recordings directory exists
             fs.mkdirSync(path.dirname(filePath), { recursive: true });
