@@ -1,3 +1,5 @@
 node_modules/*
 dist/*
 .turbo/turbo-build.log
+dist/index.js
+dist/index.js.map
